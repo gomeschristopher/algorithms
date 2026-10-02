@@ -7,25 +7,17 @@ class BinarySearch {
         int target = 9;
 
         int[] numsIndexes = IntStream.range(0, nums.length).toArray();
-        
+
         int indexMiddle = 3;
 
-       // while(indexMiddle != target) {
-            if(nums[indexMiddle] < target) {
-                numsIndexes = Arrays.copyOfRange(numsIndexes, indexMiddle, numsIndexes.length);
-                
-            } else if (nums[indexMiddle] > target) {
+        while (nums[numsIndexes[indexMiddle]] != target) {
+            if (nums[numsIndexes[indexMiddle]] > target) {
                 numsIndexes = Arrays.copyOfRange(numsIndexes, 0, indexMiddle);
+            } else if (nums[numsIndexes[indexMiddle]] < target) {
+                numsIndexes = Arrays.copyOfRange(numsIndexes, indexMiddle, numsIndexes.length);
             }
 
-            indexMiddle = (int) Math.ceil(numsIndexes.length / 2);  
-
-            System.out.println(Arrays.toString(numsIndexes));
-
-            //System.out.println(Arrays.toString(numsIndexes));
-            System.out.println(indexMiddle);
-            System.out.println(numsIndexes[indexMiddle]);
-
-        //}
+            indexMiddle = (int) Math.ceil(numsIndexes.length / 2);
+        }
     }
 }
