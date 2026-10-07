@@ -1,23 +1,23 @@
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 class BinarySearch {
     public void main() {
         int[] nums = { -1, 0, 3, 5, 9, 12 };
-        int target = 9;
+        int target = 5;
 
-        int[] numsIndexes = IntStream.range(0, nums.length).toArray();
+        int leftIndex = 0;
+        int rightIndex = nums.length - 1;
 
-        int indexMiddle = 3;
-
-        while (nums[numsIndexes[indexMiddle]] != target) {
-            if (nums[numsIndexes[indexMiddle]] > target) {
-                numsIndexes = Arrays.copyOfRange(numsIndexes, 0, indexMiddle);
-            } else if (nums[numsIndexes[indexMiddle]] < target) {
-                numsIndexes = Arrays.copyOfRange(numsIndexes, indexMiddle, numsIndexes.length);
+        while(leftIndex <= rightIndex) {
+            int middleIndex = leftIndex + (rightIndex - leftIndex) / 2;
+            
+            if(nums[middleIndex] == target) {
+                System.out.println(middleIndex);
             }
 
-            indexMiddle = (int) Math.ceil(numsIndexes.length / 2);
+            if(nums[middleIndex] < target) {
+                leftIndex = middleIndex + 1;
+            } else {
+                rightIndex = middleIndex - 1;
+            }
         }
     }
 }
